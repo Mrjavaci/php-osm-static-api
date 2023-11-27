@@ -194,7 +194,7 @@ class TileLayer
         if($this->opacity == 0) {
             return Image::newCanvas($tileSize, $tileSize);
         }
-        if (file_exist($this->getLocalFilePath($this->getTileUrl($x, $y, $z)))) {
+        if (file_exists($this->getLocalFilePath($this->getTileUrl($x, $y, $z)))) {
             $tile = Image::fromPath($this->getLocalFilePath($this->getTileUrl($x, $y, $z)));
         }else{
             $tile = Image::fromCurl($this->getTileUrl($x, $y, $z),$this->curlOptions, $this->failCurlOnError);
