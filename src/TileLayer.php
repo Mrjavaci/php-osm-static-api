@@ -194,13 +194,19 @@ class TileLayer
         if($this->opacity == 0) {
             return Image::newCanvas($tileSize, $tileSize);
         }
-
-        $tile = Image::fromCurl($this->getTileUrl($x, $y, $z),$this->curlOptions, $this->failCurlOnError);
+        if (file_exist($this->getLocalFilePath($this->getTileUrl($x, $y, $z)))) {
+            $tile = Image::fromPath($this->getLocalFilePath($this->getTileUrl($x, $y, $z)));
+        }else{
+            $tile = Image::fromCurl($this->getTileUrl($x, $y, $z),$this->curlOptions, $this->failCurlOnError);
+        }
 
         if($this->opacity > 0 && $this->opacity < 1) {
             $tile->setOpacity($this->opacity);
         }
 
         return $tile;
+    }
+    protected function getLocalFilePath(string $tileUrl){
+        return config('openstreetmap.cache_folder').'/'.$tileUrl;
     }
 }
