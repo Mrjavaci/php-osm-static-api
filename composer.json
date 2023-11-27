@@ -1,5 +1,5 @@
 {
-  "name": "dantsu/php-osm-static-api",
+  "name": "mrjavaci/php-osm-static-api",
   "type": "library",
   "description": "PHP library to easily get static image from OpenStreetMap (OSM), add markers and draw lines.",
   "keywords": [
